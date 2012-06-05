@@ -1,0 +1,41 @@
+name: ChestLogger
+main: com.gmail.czahrien.ChestLogger.ChestLoggerPlugin
+version: 0.0
+depend: [BlockStorage]
+
+commands:
+    chesthistory:
+        description: Select a chest by hitting it with wood and use this command to see its detailed access history.
+        aliases: [chistory]
+        permission: ChestLogger.SeeDetailedLogs
+        usage: |
+            /chesthistory [page=1]
+            Example: /chesthistory - see the 5 most recent accesses of the selected chest
+            Example: /chesthistory 2 - see the second page of the most recent accesses of the selected chest.
+    chesthide:
+        description: Prevent yourself from appearing on chest access history,
+        aliases: [chide]
+        permission: ChestLogger.HideUsage
+        usage: /chesthide
+    chestunhide:
+        description: Prevent yourself from appearing on chest access history,
+        aliases: [cunhide]
+        permission: ChestLogger.HideUsage
+        usage: /chestunhide
+
+permissions:
+    ChestLogger.*:
+        description: Gives access to all ChestLogger commands.
+        children:
+            ChestLogger.SeeLogs: true
+            ChestLogger.SeeDetailedLogs: true
+            ChestLogger.HideUsage: true
+    ChestLogger.SeeLogs:
+        description: Allows a user to see the five most recent users who accessed a chest.
+        default: true
+    ChestLogger.SeeDetailedLogs:
+        description: Allows a user to see detailed chest logs.
+        default: op
+    ChestLogger.HideUsage:
+        description: Allows a user to hide themselves from chest access logs.
+        default: op
